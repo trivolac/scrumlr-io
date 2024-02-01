@@ -1,0 +1,285 @@
+@import "src/constants/style";
+@import "../SettingsDialog";
+
+.board-settings__container-wrapper {
+  overflow-y: auto;
+  padding-right: $padding--small;
+  margin-right: calc(-1 * ($padding--small + 10px));
+  padding-bottom: $settings-dialog-container--bottom;
+
+  &:focus-visible {
+    outline: 2px dashed rgba(var(--accent-color-rgb), 0.5);
+    border-radius: 8px;
+  }
+
+  @include scrollbar();
+}
+
+@media screen and (min-width: 920px) {
+  .board-settings__container-wrapper {
+    padding-right: $padding--medium;
+    margin-right: calc(-1 * ($padding--medium + 10px));
+  }
+}
+
+.board-settings__container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  max-width: calc(100vw - (2 * #{$settings-dialog-container--sides-small}));
+  padding-bottom: $padding--small;
+}
+
+@media screen and (min-width: 450px) {
+  .board-settings__container {
+    max-width: calc(380px - (2 * #{$settings-dialog-container--sides-small}));
+  }
+}
+
+@media screen and (min-width: 920px) {
+  .board-settings__container {
+    max-width: calc(544px - (2 * #{$settings-dialog-container--sides-large}));
+  }
+}
+
+.board-settings__board-name-button {
+  justify-content: space-between;
+  cursor: text;
+}
+
+.board-settings__board-name-button span {
+  cursor: inherit;
+}
+
+.board-settings__board-name-button_input {
+  background-color: transparent;
+  border: none;
+  padding: $padding--default $padding--medium $padding--default $padding--default;
+  font-weight: bold;
+  letter-spacing: $letter-spacing--medium;
+  font-size: $text-size--medium;
+  text-align: right;
+  max-width: 150px;
+  cursor: inherit;
+  text-overflow: ellipsis;
+}
+
+.board-settings__board-name-button_input:focus-visible {
+  outline: none;
+}
+
+.board-settings__board-name-button_input::placeholder {
+  font-weight: bold;
+  letter-spacing: $letter-spacing--medium;
+  font-size: $text-size--medium;
+  color: $color-placeholder;
+}
+
+[theme="dark"] {
+  .board-settings__board-name-button_input {
+    color: $color-white;
+  }
+  .board-settings__board-name-button_input::placeholder {
+    color: $color-placeholder-dark;
+  }
+}
+
+.board-settings__group-and-button {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.board-settings__policy-button {
+  display: flex;
+  justify-content: space-between;
+}
+
+.board-settings__policy-button span {
+  cursor: inherit;
+  flex: 1;
+}
+
+.board-settings__policy-button_value {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+.board-settings__policy-button_value span {
+  padding: $padding--default $padding--medium $padding--default 4px;
+  font-weight: bold;
+  letter-spacing: $letter-spacing--medium;
+  font-size: $text-size--medium;
+  letter-spacing: 0.5px;
+  color: $color-placeholder;
+}
+
+@media screen and (max-width: 920px) {
+  .board-settings__policy-button_value span {
+    max-width: min-content;
+    text-align: right;
+  }
+}
+
+[theme="dark"] {
+  .board-settings__policy-button_value span {
+    color: $color-placeholder-dark;
+  }
+}
+
+.board-settings__policy-button_value svg {
+  width: $icon--medium;
+  height: $icon--medium;
+  color: var(--accent-color);
+}
+
+.board-settings__password-button {
+  justify-content: space-between;
+  padding-right: 24px;
+  position: relative;
+  cursor: text;
+}
+
+.board-settings__password-button span {
+  cursor: inherit;
+}
+
+.board-settings__password-button_value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.board-settings__password-button_value svg {
+  width: $icon--medium;
+  height: $icon--medium;
+}
+
+.board-settings__show-password-button--enabled {
+  color: var(--accent-color);
+  cursor: pointer;
+  transition: all 0.08s ease-out;
+
+  &:hover {
+    filter: brightness(1.4);
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+
+  &:focus-visible {
+    transform: scale(1.1);
+  }
+}
+
+.board-settings__show-password-button--disabled {
+  color: $color-placeholder;
+  cursor: default;
+}
+
+[theme="dark"] {
+  .board-settings__show-password-button--disabled {
+    color: $color-placeholder-dark;
+  }
+}
+
+.board-settings__password-button_value-input {
+  background-color: transparent;
+  border: none;
+  padding: $padding--default;
+  font-weight: bold;
+  letter-spacing: $letter-spacing--medium;
+  font-size: $text-size--medium;
+  text-align: right;
+  max-width: 120px;
+}
+
+[theme="dark"] {
+  .board-settings__password-button_value-input {
+    color: $color-white;
+  }
+}
+
+.board-settings__password-button_value-input:focus-visible {
+  outline: none;
+}
+
+.board-settings__password-management-button,
+.board-settings__password-input-hint {
+  display: flex;
+  align-items: center;
+  padding: 0 $padding--medium;
+  height: 30px;
+  border: none;
+  background-color: inherit;
+  color: var(--accent-color);
+  align-self: center;
+}
+
+.board-settings__password-management-button {
+  cursor: pointer;
+  transition: all 0.08s ease-out;
+  outline: none;
+
+  &:hover {
+    filter: brightness(1.4);
+    transform: scale(1.01);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+
+  &:focus-visible {
+    text-decoration: underline;
+  }
+}
+
+.board-settings__remove-protection-button svg {
+  width: $icon--medium;
+  height: $icon--medium;
+  color: var(--accent-color);
+}
+
+.board-settings__generate-password-button svg {
+  width: $icon--small;
+  height: $icon--small;
+  margin: 0 4px 2px 3px;
+  color: var(--accent-color);
+}
+
+.board-settings__password-management-text {
+  padding-left: 4px;
+  font-weight: bold;
+  font-size: $text-size--medium;
+  letter-spacing: $letter-spacing--medium;
+}
+
+.board-settings__delete-button span {
+  color: $color-retro-red;
+  font-weight: bold;
+}
+
+[theme="dark"] {
+  .board-settings__delete-button span {
+    color: $color-retro-red;
+  }
+}
+
+.board-settings__delete-button svg {
+  color: $color-retro-red;
+}
+
+.board-settings__confirmation-dialog {
+  z-index: 0;
+}
+
+.button--centered {
+  align-self: center;
+}

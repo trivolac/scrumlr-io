@@ -1,0 +1,19 @@
+@import "src/constants/style";
+@import "src/components/Note/Note.scss";
+@import "src/components/TooltipButton/TooltipButton.scss";
+@import "src/components/Votes/Votes.scss";
+
+.note-dialog__note-footer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-left: -$reaction-list__left-spacing; // a little to the left, the icon in NoteReactionList lines up
+
+  height: var(--note-footer-height);
+
+  &--collapsed {
+    height: 0;
+  }
+}

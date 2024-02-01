@@ -1,0 +1,60 @@
+@import "constants/style";
+
+$header-menu__item-height: 48px;
+
+$header-menu-button-height: 24px;
+$header-menu-button-width: 24px;
+$header-menu-toggle-button-height: 12px;
+$header-menu-toggle-button-width: 12px;
+$header-menu-toggle-height: 3px;
+$header-menu-toggle-background-color: #c8c8c8;
+
+.board-option-toggle {
+  margin-left: $margin--default;
+  margin-right: $margin--default;
+  height: $header-menu__item-height;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.board-option-toggle__switch {
+  width: $header-menu-button-width;
+  height: $header-menu-button-height;
+  position: relative;
+  display: inline-block;
+
+  &:hover::after {
+    transform: scale(1.2);
+  }
+}
+.board-option-toggle__switch::after {
+  content: "";
+  height: $header-menu-toggle-button-height;
+  width: $header-menu-toggle-button-width;
+  position: absolute;
+  border-radius: 100%;
+  top: calc(50% - #{$header-menu-toggle-button-height} / 2);
+  transition: all 0.16s ease-out, transform 0.08s ease-out;
+}
+.board-option-toggle__switch::before {
+  content: "";
+  height: $header-menu-toggle-height;
+  width: 24px;
+  background-color: $header-menu-toggle-background-color;
+  position: absolute;
+  border-radius: $header-menu-toggle-height;
+  top: calc(50% - #{$header-menu-toggle-height} / 2);
+}
+.board-option-toggle__switch--left::after {
+  left: 0;
+  background-color: $color-middle-gray;
+}
+.board-option-toggle__switch--right::after {
+  left: $header-menu-toggle-button-width;
+  background-color: $color-backlog-blue;
+}
+[theme="dark"] .board-option-toggle__switch--right::after {
+  background-color: $color-planning-pink;
+}

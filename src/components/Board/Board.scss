@@ -1,0 +1,102 @@
+@import "constants/style";
+@import "components/Column/Column";
+
+.board {
+  --visible-columns: 1;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns:
+    minmax($board__side-panel-width, 1fr)
+    repeat(var(--board__columns), Min(calc((100% - #{$board__side-panel-width * 2}) / min(var(--board__columns), var(--visible-columns))), #{$column__max-width}))
+    minmax($board__side-panel-width, 1fr);
+
+  scroll-snap-type: x mandatory;
+  scroll-snap-stop: always;
+  scroll-padding: $board__side-panel-width;
+
+  width: 100vw;
+  height: 100%;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  overflow: hidden;
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  > * {
+    scroll-snap-align: start;
+  }
+
+  &--dragging {
+    scroll-snap-type: none; // disable snapping while dragging due to unwanted behavior with dnd-kit
+  }
+}
+
+.board__spacer-left {
+  @include inset-border($top: true, $left: true, $bottom: true);
+
+  &.board__spacer--moderation-isActive {
+    @include inset-border($top: true, $left: true, $bottom: true, $color: $color-goal-green);
+  }
+}
+.board__spacer-right {
+  @include inset-border($top: true, $right: true, $bottom: true);
+
+  &.board__spacer--moderation-isActive {
+    @include inset-border($top: true, $right: true, $bottom: true, $color: $color-goal-green);
+  }
+}
+
+.board__spacer-left:nth-child(odd),
+.board__spacer-right:nth-child(odd) {
+  background-color: $color-white-two;
+}
+
+.board__spacer-left:nth-child(even),
+.board__spacer-right:nth-child(even) {
+  background-color: $color-white-one;
+}
+
+.column--hidden + .board__spacer-right,
+.board__spacer-left:has(+ .column--hidden) {
+  background-image: $column-stripes--light;
+}
+
+[theme="dark"] {
+  .board__spacer-left:nth-child(odd),
+  .board__spacer-right:nth-child(odd) {
+    background-color: $color-dark-one;
+  }
+
+  .board__spacer-left:nth-child(even),
+  .board__spacer-right:nth-child(even) {
+    background-color: $color-dark-two;
+  }
+
+  .column--hidden + .board__spacer-right,
+  .board__spacer-left:has(+ .column--hidden) {
+    background-image: $column-stripes--dark;
+  }
+}
+
+@media screen and (max-width: $column__min-width+2*$board__side-panel-width) {
+  .board {
+    grid-template-columns:
+      $column__border-width repeat(var(--board__columns), calc(100% - #{$column__border-width * 2}))
+      $column__border-width;
+    scroll-padding: $column__border-width;
+  }
+}
+
+@for $i from 1 through 16 {
+  @media screen and (min-width: $i*($column__min-width+2*$board__side-panel-width)) {
+    .board {
+      --visible-columns: #{$i};
+    }
+  }
+}

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToggleButton should render correctly 1`] = `
+<button
+  aria-label="Inactive"
+  aria-pressed="false"
+  class="toggle-button"
+>
+  <div
+    class="toggle"
+  />
+</button>
+`;

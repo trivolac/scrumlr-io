@@ -1,0 +1,83 @@
+@import "constants/style";
+
+$header-menu__item-border-width: 1px;
+$header-menu-button-height: 24px;
+$settings__item-height: 48px;
+$header-menu-border-bottom-color: #efefef;
+
+.settings-option-button {
+  display: flex;
+  align-items: center;
+  gap: $padding--default;
+
+  background-color: $color-white;
+  border-radius: 8px;
+  border: none;
+  padding: 0 $padding--medium;
+  height: $settings__item-height;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.settings-option-button:focus-visible {
+  outline: none;
+
+  .toggle::after {
+    transform: scale(1.1);
+  }
+}
+
+.settings-option-button:focus-within,
+.settings-option-button:hover {
+  background-color: rgba(var(--accent-color-rgb), 0.1);
+}
+
+.settings-option-button__label {
+  color: $color-black;
+  font-size: $text-size--medium;
+  letter-spacing: $letter-spacing--medium;
+  cursor: pointer;
+  hyphens: auto;
+  flex-grow: 1;
+}
+
+.settings-option-button__icon {
+  width: $icon--large;
+  color: var(--accent-color);
+  vertical-align: middle;
+  border-bottom: none !important;
+}
+
+.settings-option-button--disabled {
+  cursor: default !important;
+}
+
+.settings-option-button--disabled:focus-within,
+.settings-option-button--disabled:hover {
+  cursor: default;
+  background-color: $color-white;
+}
+
+[theme="dark"] {
+  .settings-option-button {
+    background-color: $color-dark-mode-note;
+  }
+  .settings-option-button:focus-within,
+  .settings-option-button:hover {
+    background-color: $color-dark-mode-note--hover;
+  }
+
+  .settings-option-button__label {
+    color: $color-white;
+  }
+
+  .settings-option-button--disabled:focus-within,
+  .settings-option-button--disabled:hover {
+    background-color: $color-dark-mode-note;
+  }
+
+  .settings-option-button--expandable {
+    background-color: $color-dark-mode-note;
+  }
+}

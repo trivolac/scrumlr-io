@@ -1,0 +1,225 @@
+@import "src/constants/style";
+
+.column {
+  min-width: $column__min-width;
+  width: 100%;
+  max-width: $column__max-width;
+  @include inset-border($top: true, $bottom: true);
+  padding-top: calc($column__border-width + $header__height + $info-bar__height);
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+}
+.column__moderation-isActive {
+  @include inset-border($top: true, $bottom: true, $color: $color-goal-green);
+}
+.column:nth-child(odd) {
+  background-color: $color-white-one;
+}
+.column:nth-child(even) {
+  background-color: $color-white-two;
+}
+[theme="dark"] {
+  .column:nth-child(even) {
+    background-color: $color-dark-one;
+  }
+  .column:nth-child(odd) {
+    background-color: $color-dark-two;
+  }
+}
+.column--hidden {
+  background-image: $column-stripes--light;
+}
+[theme="dark"] {
+  .column--hidden {
+    background-image: $column-stripes--dark;
+  }
+}
+
+.column__content {
+  max-height: 100%;
+  max-width: 100%;
+  padding: 0 0 $column__border-width 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  ::selection {
+    background-color: rgba(var(--accent-color-rgb), 0.5);
+  }
+}
+
+.column__header {
+  display: flex;
+  flex-direction: column;
+  padding: 0 $padding--large;
+}
+
+.column__header-title {
+  display: flex;
+  word-break: break-word;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $margin--default;
+  height: 48px;
+  position: relative;
+}
+
+.column__header-text-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: auto;
+  height: auto;
+  border-bottom: solid 3px var(--accent-color);
+  margin: 0 $margin--small 0 0;
+  overflow: hidden;
+}
+
+.column__header-text-wrapper--hidden {
+  border-bottom-style: dashed;
+}
+
+.column__header-text {
+  font-size: calc(#{$text-size--large} + 0.4vw);
+  margin: 0;
+  font-weight: bold;
+  letter-spacing: $letter-spacing--large;
+  line-height: $line-height--large;
+  color: $color-black;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.column__header-text--hidden {
+  color: $color-middle-gray;
+}
+
+.column__header-input {
+  display: flex;
+  align-items: center;
+  border: none;
+  font-size: calc(#{$text-size--large} + 0.4vw);
+  color: $color-black;
+  border-bottom: dashed 3px var(--accent-color);
+  margin: 0 auto 0 0;
+  font-weight: bold;
+  letter-spacing: $letter-spacing--large;
+  line-height: $line-height--large;
+  background-color: transparent;
+  padding: 0;
+  outline: none;
+  max-width: 300px;
+  width: 50%;
+}
+[theme="dark"] {
+  .column__header-input {
+    color: $color-white;
+  }
+}
+
+.column__header-card-number {
+  margin-bottom: $margin--default;
+  font-size: $text-size--medium;
+  color: $color-middle-gray;
+  font-weight: 600;
+  letter-spacing: $letter-spacing--large;
+  line-height: $line-height--large;
+  flex: 1 0 12px;
+}
+
+.column__notes-wrapper {
+  overflow: auto;
+  border-radius: 16px;
+  border: 2px dashed transparent;
+  transition: all 0.25s ease-in-out;
+  flex: 1;
+  outline: none;
+  scrollbar-width: 10px;
+  scrollbar-color: $color-middle-gray $color-white;
+
+  @include scrollbar();
+}
+
+.column__notes-wrapper.isOver {
+  border-color: var(--accent-color);
+  background-color: rgba(var(--accent-color-rgb), 0.2);
+}
+
+.column__note-list {
+  margin: 0;
+  // padding-top of 4px to display note outline focus correctly
+  padding: 4px $padding--large $padding--default $padding--large;
+  display: grid;
+  grid-auto-flow: row;
+  grid-row-gap: 20px;
+  grid-column-gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  list-style: none;
+}
+
+[theme="dark"] {
+  .column__header-text {
+    color: $color-white;
+  }
+
+  .column__header-text--hidden {
+    color: $color-middle-gray;
+  }
+
+  .column__notes-wrapper {
+    scrollbar-color: $color-darkest-gray $color-dark-mode-note;
+  }
+}
+
+.column__header-hidden-icon {
+  height: $icon--medium;
+  width: $icon--medium;
+  min-width: $icon--medium;
+  min-height: $icon--medium;
+  margin: 0 $margin--small 0 0;
+  color: $color-warning-red;
+  cursor: pointer;
+  transition: all 0.08s ease-out;
+}
+
+.column__header-hidden-icon:hover {
+  color: $color-black;
+}
+
+[theme="dark"] {
+  .column__header-hidden-icon:hover {
+    color: $color-white;
+  }
+}
+
+.column__header-edit-button {
+  height: 24px;
+  // Align with note-input__icon
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  transition: all 0.08s ease-out;
+  flex: 0 0 24px;
+  margin: auto calc(#{$margin--default} - 2px) auto $margin--default;
+
+  &:hover > svg,
+  &:focus-visible > svg {
+    transform: translate(-0.64px, -0.64px);
+    filter: drop-shadow(2px 2px 2px rgba(var(--accent-color-rgb), 0.24));
+    color: var(--accent-color);
+  }
+}
+
+.column__header-edit-button-icon {
+  color: $color-black;
+  height: 24px;
+  transition: all 0.08s ease-out;
+}
+
+[theme="dark"] .column__header-edit-button-icon {
+  color: $color-white;
+}

@@ -1,0 +1,325 @@
+@import "src/constants/style";
+
+.settings-dialog__background {
+  position: fixed;
+  @include inset-0;
+  background-color: rgba($color: $color-backlog-blue, $alpha: 0.1);
+  backdrop-filter: blur(10px);
+}
+[theme="dark"] .settings-dialog__background {
+  background-color: rgba($color: $color-planning-pink, $alpha: 0.1);
+}
+
+.settings-dialog__wrapper {
+  position: fixed;
+  @include inset-0;
+  @include flex-center;
+}
+
+// settings-dialog container
+$settings-dialog-container--sides-small: 32px;
+$settings-dialog-container--sides-large: 92px;
+$settings-dialog-container--bottom: 62px;
+
+.settings-dialog {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+@media screen and (min-width: 450px) {
+  .settings-dialog {
+    height: 616px;
+    width: auto;
+    border-radius: $rounded--small;
+    box-shadow: 0 16px 32px #0057ff29;
+  }
+  [theme="dark"] .settings-dialog {
+    box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+.settings-dialog__content {
+  display: none;
+  background: $color-white-one;
+  width: 100%;
+  padding-top: 50px;
+  overflow-y: hidden; // so that reset state banner can flow out
+}
+[theme="dark"] .settings-dialog__content {
+  background: $color-dark-two;
+}
+.settings-dialog--selected .settings-dialog__content {
+  display: block;
+}
+@media screen and (min-width: 450px) {
+  .settings-dialog__content {
+    width: 380px;
+    height: calc(100% + 50px);
+    border-radius: $rounded--small;
+  }
+}
+@media screen and (min-width: 920px) {
+  .settings-dialog__content {
+    display: block;
+    width: 544px;
+    height: 100%;
+    border-radius: 0 $rounded--small $rounded--small 0;
+    padding-top: 0;
+  }
+}
+
+.settings-dialog__sidebar {
+  width: 100%;
+  background-color: $color-white;
+}
+[theme="dark"] .settings-dialog__sidebar {
+  background-color: $color-dark-mode-note;
+}
+.settings-dialog--selected .settings-dialog__sidebar {
+  display: none;
+}
+@media screen and (min-width: 450px) {
+  .settings-dialog__sidebar {
+    width: 380px;
+    height: calc(100% + 50px);
+    border-radius: $rounded--small;
+  }
+}
+@media screen and (min-width: 920px) {
+  .settings-dialog--selected .settings-dialog__sidebar {
+    display: block;
+  }
+  .settings-dialog__sidebar {
+    width: 318px;
+    height: 100%;
+    border-radius: $rounded--small 0 0 $rounded--small;
+  }
+}
+
+.settings-dialog__scrumlr-logo {
+  height: 40px;
+  margin: $margin--large;
+}
+[theme="light"] .settings-dialog__scrumlr-logo--dark {
+  display: none;
+}
+[theme="dark"] .settings-dialog__scrumlr-logo--light {
+  display: none;
+}
+
+.settings-dialog__navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-dialog__close-button {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: $color-backlog-blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $icon--extralarge;
+  height: $icon--extralarge;
+  border-radius: $rounded--full;
+  transition: all 0.08s ease-out;
+  border: 2px solid transparent;
+  outline: none;
+
+  &:hover {
+    background-color: $color-backlog-blue;
+    color: $color-white;
+    transform: scale(1.04);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+
+  &:focus-visible {
+    border: 2px solid $color-backlog-blue;
+  }
+}
+.settings-dialog__close-button > svg {
+  height: 100%;
+  width: 100%;
+}
+[theme="dark"] .settings-dialog__close-button {
+  color: $color-planning-pink;
+
+  &:hover {
+    background-color: $color-planning-pink;
+    color: $color-white;
+  }
+
+  &:focus-visible {
+    border: 2px solid $color-planning-pink;
+  }
+}
+@media screen and (min-width: 450px) {
+  .settings-dialog__close-button {
+    top: -22px;
+    right: -22px;
+    background-color: $color-white;
+    box-shadow: 0 16px 32px #0057ff3d;
+  }
+  [theme="dark"] .settings-dialog__close-button {
+    box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.2);
+    background: $color-dark-mode-note;
+  }
+}
+
+.settings-dialog__back-link {
+  display: none;
+}
+
+@media screen and (max-width: 920px) {
+  .settings-dialog__back-link {
+    display: inline;
+  }
+  .settings-dialog__back-link > svg {
+    position: absolute;
+    top: 12px;
+    left: 9px;
+    color: $color-backlog-blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: $rounded--full;
+  }
+  [theme="dark"] .settings-dialog__back-link > svg {
+    color: $color-planning-pink;
+  }
+}
+
+.navigation__item {
+  height: 56px;
+  width: 252px;
+  margin: 0 $margin--large;
+  border-radius: $rounded--full;
+  text-decoration: none;
+  color: $color-black;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 8px;
+
+  &:hover {
+    background: rgba(var(--accent-color-rgb), 0.8);
+    color: $color-white;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--accent-color);
+  }
+}
+
+.navigation-item__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.navigation-item__name {
+  font-size: $text--base;
+  line-height: $text--md;
+  font-weight: 700;
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.navigation-item__description {
+  font-size: $text--xs;
+  line-height: $text--base;
+  font-weight: 500;
+  margin: 0;
+  width: max-content;
+}
+
+[theme="dark"] .navigation__item {
+  color: $color-white;
+}
+
+.navigation__item--active {
+  outline: none;
+  background: var(--accent-color);
+  color: $color-white;
+}
+
+.navigation-item__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: $rounded--full;
+  background: var(--accent-color);
+  color: $color-white;
+}
+
+.settings-dialog__container {
+  margin: 0 $settings-dialog-container--sides-small;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+@media screen and (min-width: 920px) {
+  .settings-dialog__container {
+    margin: 0 $settings-dialog-container--sides-large;
+  }
+}
+
+.settings-dialog__header {
+  display: flex;
+  justify-content: center;
+  margin: $margin--large 0;
+}
+
+@media screen and (min-width: 920px) {
+  .settings-dialog__header {
+    margin: $margin--large 0;
+  }
+}
+
+.settings-dialog__header-text {
+  border-bottom: solid 3px var(--accent-color);
+  padding-bottom: 8px;
+  margin: 0;
+}
+
+.settings-dialog__separator {
+  margin: 0 0 0 5%;
+  width: 90%;
+  border: 0;
+  border-top: 0.5px solid $color-lighter-gray;
+}
+
+.settings-dialog__group {
+  display: flex;
+  flex-direction: column;
+  border-radius: $rounded--small;
+  background-color: $color-white;
+}
+
+[theme="dark"] {
+  .settings-dialog__header-text {
+    color: $color-white;
+  }
+
+  .settings-dialog__separator {
+    border-top: 0.5px solid $color-dark-one;
+  }
+
+  .settings-dialog__group {
+    background-color: $color-dark-mode-note;
+  }
+}

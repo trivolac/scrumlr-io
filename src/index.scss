@@ -1,0 +1,51 @@
+@import "~@fontsource/raleway/300.css";
+@import "~@fontsource/raleway/400.css";
+@import "~@fontsource/raleway/500.css";
+@import "~@fontsource/raleway/600.css";
+@import "~@fontsource/raleway/700.css";
+@import "~@fontsource/raleway/800.css";
+
+@import "constants/style.scss";
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+
+  background: $color-white;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  font-family: "Raleway", sans-serif;
+  font-variant-numeric: lining-nums;
+}
+
+#root {
+  position: relative;
+}
+
+body {
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+[theme="dark"] {
+  body,
+  #root {
+    background: $color-dark-mode;
+  }
+}
+
+html[theme="dark"] {
+  background: $color-dark-mode;
+}

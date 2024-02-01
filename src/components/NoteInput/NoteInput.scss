@@ -1,0 +1,174 @@
+@import "constants/style";
+
+$note-input__input-left: 20px;
+$note-input__input-right: 40px;
+
+.note-input {
+  display: flex;
+  justify-content: space-between;
+  min-height: 36px;
+  width: 100%;
+  position: relative;
+  margin-bottom: $margin--default;
+  background-color: $color-lighter-gray;
+  border-radius: $rounded--medium;
+  transition: all 0.12s ease-in-out;
+  border: 2px solid transparent;
+
+  &:hover,
+  &:focus-within {
+    border-color: rgba(var(--accent-color-rgb), 0.5);
+    box-shadow: 0 6px 9px 0 rgba(var(--accent-color-rgb), 0.16);
+  }
+}
+
+.note-input__input {
+  left: $note-input__input-left;
+  right: $note-input__input-right;
+  color: $color-black;
+  font-size: $text-size--medium;
+  font-weight: bold;
+  line-height: 24px;
+  max-height: 70vh;
+  letter-spacing: $letter-spacing--small;
+  padding: $padding--small 0;
+  font-family: Raleway, sans-serif;
+  background-color: transparent;
+  border: none;
+  margin-left: $margin--default;
+  width: calc(100% - #{$note-input__input-left} - #{$note-input__input-right});
+  outline: none;
+
+  resize: none;
+
+  &:focus::placeholder {
+    color: transparent;
+  }
+}
+
+.note-input__add-button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: $padding--small 0;
+
+  &:hover > .note-input__icon {
+    filter: brightness(1.2);
+    transform: scale(1.2);
+  }
+
+  &:focus > .note-input__icon {
+    border-radius: 100%;
+    outline: 2px solid rgba(var(--accent-color-rgb), 0.5);
+  }
+}
+
+.note-input__icon--image,
+.note-input__icon--add {
+  width: $icon--medium;
+  height: $icon--medium;
+  color: var(--accent-color);
+  align-self: center;
+  transition: all 0.08s ease-out;
+}
+
+.note-input__icon--add {
+  margin-right: $margin--default;
+}
+
+.note-input__icon--image {
+  margin: 0 $margin--small 4px $margin--small;
+  animation: fade-in 0.2s ease-in-out;
+}
+
+.note-input__isImage {
+  display: flex;
+  position: relative;
+}
+
+.note-input__icon--star {
+  position: absolute;
+  color: var(--accent-color);
+  animation: sparkle 1.5s ease-in-out infinite alternate;
+
+  &.star-1 {
+    transform: scale(0.35);
+    top: 2px;
+    left: -6px;
+  }
+
+  &.star-2 {
+    transform: scale(0.3);
+    top: -2px;
+    left: 10px;
+    animation-delay: 0.4s;
+  }
+
+  &.star-3 {
+    transform: scale(0.35);
+    bottom: -1px;
+    left: 9px;
+    animation-delay: 1.2s;
+  }
+}
+
+.note-input__emoji-suggestions {
+  position: absolute;
+  top: calc(100% + $padding--small);
+  left: 0;
+  width: 100%;
+  background-color: $color-lighter-gray;
+  // prevent overflow by approximating available space below the input box
+  max-height: min($column-emoji-suggestions__max-height, calc(100svh - $column-emoji-suggestions__approx-top-distance));
+
+  z-index: $note-input__emoji-suggestions-z-index;
+  border-radius: $rounded--default;
+  overflow-y: auto;
+  box-shadow: $box-shadow--light;
+
+  @include scrollbar();
+}
+
+[theme="dark"] {
+  .note-input {
+    background-color: $color-dark-mode-note;
+
+    &:hover,
+    &:focus-within {
+      box-shadow: 0 6px 9px 0 #232323;
+    }
+  }
+
+  .note-input__input {
+    color: $color-white;
+  }
+
+  .note-input__emoji-suggestions {
+    background-color: $color-dark-mode-note;
+    box-shadow: $box-shadow--dark;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 20%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}

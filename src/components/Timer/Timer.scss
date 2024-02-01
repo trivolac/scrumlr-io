@@ -1,0 +1,274 @@
+@import "constants/style.scss";
+
+$timer-display-width: 114px;
+$timer__content-height: 38px;
+$timer__short-actions-height: 28px;
+
+$timer__progress-bar-color: #6096ff;
+
+.timer__container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.timer__increment-button {
+  position: relative;
+  border-radius: 999px;
+
+  &:focus-within {
+    outline: 2px solid $color-backlog-blue;
+  }
+}
+
+.increment-button__button {
+  border: 2px solid $color-white;
+  background-color: $color-dark-mode-note;
+  box-shadow: $box-shadow--light;
+  border-radius: 999px;
+  height: 42px;
+  width: 42px;
+  color: white;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  outline: none;
+
+  > svg {
+    width: 100%;
+  }
+}
+
+.timer {
+  height: 100%;
+  width: $timer-display-width;
+  color: $color-dark-mode-note;
+  background-color: $menu-icon-background-color--light;
+  border-radius: $rounded--full;
+  position: relative;
+  border: 2px solid $menu-icon-background-color--light;
+  box-shadow: $box-shadow--light;
+}
+.timer > svg {
+  position: absolute;
+  height: 100%;
+  background-color: $color-dark-mode-note;
+  color: $color-white;
+  border-radius: 100%;
+}
+[theme="dark"] .timer > svg {
+  background-color: $color-white;
+  color: $color-dark-mode-note;
+}
+
+.timer > span {
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding-left: $timer__content-height;
+  line-height: $timer__content-height;
+  text-align: center;
+  font-weight: bold;
+}
+
+.timer__progress-bar {
+  position: absolute;
+  top: 0;
+  left: calc($timer__content-height / 2);
+  height: $timer__content-height;
+  border-top-right-radius: $rounded--full;
+  border-bottom-right-radius: $rounded--full;
+  background-color: $timer__progress-bar-color;
+  transition: right 250ms linear;
+}
+
+.timer__short-actions {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-radius: $rounded--full;
+  background-color: $menu-icon-background-color--light;
+  display: none;
+  justify-content: end;
+  align-items: center;
+  gap: $margin--small;
+  padding-right: 4px;
+}
+[theme="dark"] .timer__short-actions {
+  background-color: $menu-icon-background-color--dark;
+}
+
+.timer:hover > .timer__short-actions {
+  display: flex;
+}
+
+.short-actions__short-action {
+  position: relative;
+  height: $timer__short-actions-height;
+  width: $timer__short-actions-height;
+  border-radius: $rounded--full;
+}
+
+.short-action__button {
+  height: $timer__short-actions-height;
+  width: $timer__short-actions-height;
+  border-radius: $rounded--full;
+  background-color: $color-lighter-gray;
+  color: $color-dark-mode-note;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+[theme="dark"] .short-action__button {
+  background-color: $color-dark-one;
+  color: $color-white;
+}
+.short-action__button > svg {
+  position: absolute;
+  height: $icon--small;
+  width: $icon--small;
+}
+.short-action__button--ready > .short-action__cancel-icon,
+.short-action__button--unready > .short-action__cancel-icon {
+  visibility: hidden;
+}
+.short-action__button--ready:hover > .short-action__check-icon {
+  visibility: hidden;
+}
+.short-action__button--ready:hover > .short-action__cancel-icon {
+  visibility: visible;
+}
+.short-action__button > .short-action__check-icon {
+  height: $timer__short-actions-height;
+  width: $timer__short-actions-height;
+}
+
+.short-action__button:hover {
+  background-color: $timer__progress-bar-color;
+  color: $color-white;
+}
+
+.short-action__tooltip,
+.increment-button__tooltip {
+  width: max-content;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 150ms linear;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: $rounded--full;
+  padding: $padding--small $padding--default;
+  background-color: $tooltip-background-color--light;
+  color: $menu-icon-background-color--dark;
+  font-size: $text--base;
+  font-weight: bold;
+  bottom: calc(100% + 6px);
+  box-shadow:
+    0 1px 3px 0 rgb(0 0 0 / 0.1),
+    0 1px 2px -1px rgb(0 0 0 / 0.1);
+  // Increased the z-index to make sure the tooltip doesn't get overlapped by the absolute positioned icon
+  z-index: calc($infobar-z-index + 50);
+}
+@media (prefers-reduced-motion) {
+  .short-action__tooltip {
+    transition: none;
+  }
+}
+
+.timer__increment-button:hover > .increment-button__tooltip,
+.short-actions__short-action:hover > .short-action__tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.increment-button__tooltip::after,
+.short-action__tooltip::after {
+  content: "";
+  position: absolute;
+  border: 5px solid;
+  border-color: $tooltip-background-color--light transparent transparent transparent;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+}
+
+[theme="dark"] {
+  .timer {
+    color: $color-white;
+    background-color: $menu-icon-background-color--dark;
+    border-color: $menu-icon-background-color--dark;
+  }
+
+  .timer__increment-button:focus-within {
+    outline: 2px solid $color-planning-pink;
+  }
+
+  .increment-button__button {
+    background-color: $color-white;
+    color: $color-dark-mode-note;
+    border-color: $menu-icon-background-color--dark;
+  }
+
+  .short-action__tooltip,
+  .increment-button__tooltip {
+    background-color: $tooltip-background-color--dark;
+    color: $color-white;
+
+    &::after {
+      border-color: $tooltip-background-color--dark transparent transparent transparent;
+    }
+  }
+}
+
+// Shake animation on expired timer
+.timer--expired {
+  animation: shake 0.5s;
+  animation-iteration-count: 10;
+}
+@media (prefers-reduced-motion: reduce) {
+  .timer--expired > span {
+    animation: none;
+  }
+}
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}

@@ -1,0 +1,124 @@
+@import "constants/style";
+@import "components/Note/Note.scss";
+@import "routes/StackView/StackView.scss";
+
+.note-dialog__note-content {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  line-height: $line-height--medium;
+  flex: 1;
+  overflow-y: visible;
+  justify-content: center;
+
+  &:has(&--image) {
+    padding: $padding--small;
+  }
+  &:has(&--image-zoom) {
+    overflow: visible;
+  }
+
+  &--extended {
+    height: 5.5 * $line-height--medium;
+  }
+}
+
+.note-dialog__note-content--text {
+  background: none;
+  margin: 0;
+  overflow-y: scroll;
+  @include scrollbar();
+  width: 100%;
+  color: $color-black;
+  letter-spacing: $letter-spacing--medium;
+  border: 2px dashed transparent;
+  border-radius: 5px;
+  transition: border-color 150ms ease-in-out;
+  outline: none;
+  resize: none;
+  word-wrap: break-word;
+  padding: 0 4px;
+  font-size: $text--md;
+  line-height: 1.5rem;
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus-visible {
+      border-color: var(--accent-color--desaturated-dark);
+    }
+  }
+}
+
+.note-dialog__note-content--image {
+  object-fit: contain;
+  cursor: zoom-in;
+  position: relative;
+  margin-left: calc(100% / 12);
+
+  &-zoom {
+    object-fit: contain;
+    max-height: 80vh;
+    max-width: 80vw;
+    min-height: 80vh;
+    min-width: 80vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: $request-z-index;
+    cursor: zoom-out;
+    position: fixed;
+
+    animation: fade 0.1s ease-in-out;
+  }
+}
+
+.note-dialog__note-content--image-zoom-backdrop {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: zoom-out;
+  backdrop-filter: blur(10px) brightness(0.76) saturate(0);
+  background: rgba(var(--accent-color-rgb), 0.42);
+
+  animation: fade 0.1s ease-in-out;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.note-dialog__note-content--emoji-suggestions {
+  position: absolute;
+  top: calc(100% + $padding--small);
+  left: 0;
+  width: 100%;
+  max-height: min(300px, calc(100svh - $note-dialog-emoji-suggestions__approx-top-distance));
+  margin-bottom: $margin--large;
+
+  z-index: $note-dialog__emoji-suggestions-z-index;
+  border-radius: $rounded--default;
+  overflow-y: auto;
+  box-shadow: $box-shadow--light;
+  background-color: $color-lighter-gray;
+
+  @include scrollbar();
+}
+
+[theme="dark"] {
+  .note-dialog__note-content--text {
+    color: $color-white;
+  }
+
+  .note-dialog__note-content--emoji-suggestions {
+    background-color: $color-dark-mode-note;
+    box-shadow: $box-shadow--dark;
+  }
+}

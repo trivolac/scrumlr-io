@@ -1,0 +1,62 @@
+@import "constants/style.scss";
+
+.accent-color--blue {
+  --accent-color: #0057ff;
+}
+
+.accent-color--purple {
+  --accent-color: #5e00ff;
+}
+
+.accent-color--lilac {
+  --accent-color: #c000ff;
+}
+
+.accent-color--pink {
+  --accent-color: #e20360;
+}
+
+.scrumlr-logo__paths {
+  fill: $color-backlog-blue;
+
+  path {
+    transition: all 0.08s ease-out;
+  }
+}
+
+.scrumlr-logo {
+  height: 48px;
+  overflow: visible;
+}
+
+.scrumlr-logo__stop {
+  stop-color: $color-backlog-blue;
+}
+
+[theme="dark"] {
+  .scrumlr-logo__paths {
+    fill: $color-white;
+  }
+
+  .scrumlr-logo__stop {
+    stop-color: var(--accent-color);
+  }
+}
+
+.scrumlr-logo--mobile {
+  min-width: 44px;
+}
+
+.scrumlr-logo--desktop {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .scrumlr-logo--desktop {
+    display: initial;
+  }
+
+  .scrumlr-logo--mobile {
+    display: none;
+  }
+}

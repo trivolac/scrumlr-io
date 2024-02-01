@@ -1,0 +1,183 @@
+@import "src/constants/style.scss";
+
+.confirmation-dialog__background {
+  position: fixed;
+  @include inset-0;
+  background-color: rgba($color: $color-backlog-blue, $alpha: 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.confirmation-dialog__wrapper {
+  position: fixed;
+  @include inset-0;
+  @include flex-center;
+}
+
+.confirmation-dialog {
+  min-width: 220px;
+  max-width: 570px;
+  color: $color-black;
+  background-color: $color-white;
+  border-radius: $rounded--medium;
+  padding: 40px 42px 35px 40px;
+  border: 2px transparent;
+  box-shadow: 0 16px 32px 0 rgba($color-backlog-blue, 0.24);
+}
+
+.confirmation-dialog__icon-content-wrapper {
+  display: flex;
+  width: 100%;
+  gap: 16px;
+}
+
+.confirmation-dialog__icon {
+  min-width: 75px;
+  height: 100%;
+  margin-top: -9px;
+  margin-left: -14px;
+  color: var(--accent-color);
+  opacity: 0.6;
+}
+
+.confirmation-dialog__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.confirmation-dialog__title {
+  margin: 0px;
+  letter-spacing: $letter-spacing--small;
+}
+
+.confirmation-dialog__warning {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin: 12px 0px 0px 0px;
+}
+.confirmation-dialog__warning > svg {
+  color: var(--accent-color);
+  min-width: 14px;
+  max-width: 18px;
+  opacity: 0.8;
+}
+.confirmation-dialog__warning > p {
+  margin: 0px;
+  font-size: $text-size--medium;
+  letter-spacing: $letter-spacing--small;
+}
+
+@media #{$mini-smartphone} {
+  .confirmation-dialog__icon {
+    display: none;
+  }
+  .confirmation-dialog__buttons {
+    flex-wrap: wrap;
+  }
+  .confirmation-dialog__button {
+    width: 100%;
+  }
+  .confirmation-dialog__warning {
+    align-items: start;
+  }
+  .confirmation-dialog {
+    width: 80%;
+  }
+}
+
+.confirmation-dialog__button {
+  border: 2px solid $color-backlog-blue;
+  border-radius: $rounded--full;
+  padding: $padding--small $padding--medium;
+  font-size: $text-size--medium;
+  font-weight: bold;
+  min-height: 48px;
+  cursor: pointer;
+  transition:
+    transform 80ms linear,
+    box-shadow 80ms linear;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px 0 rgba($color: $color-backlog-blue, $alpha: 0.2);
+  }
+}
+.confirmation-dialog__button--accept {
+  color: $color-white;
+  background-color: $color-backlog-blue;
+}
+.confirmation-dialog__button--decline {
+  color: $color-backlog-blue;
+  background-color: rgba($color: $color-backlog-blue, $alpha: 0.1);
+}
+.confirmation-dialog__buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: $margin--default;
+}
+
+.confirmation-dialog__close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  @include flex-center;
+  color: $color-backlog-blue;
+  height: $icon--extralarge;
+  width: $icon--extralarge;
+  border-radius: $rounded--full;
+  border: 2px transparent;
+  box-shadow: 0 16px 32px 0 rgba($color-backlog-blue, 0.24);
+  padding: 0;
+  background-color: $color-white;
+  cursor: pointer;
+  transition:
+    color 80ms linear,
+    background-color 80ms linear;
+  &:hover {
+    color: $color-white;
+    background-color: $color-backlog-blue;
+  }
+}
+.confirmation-dialog__close-button > svg {
+  height: 100%;
+  width: 100%;
+}
+[theme="dark"] {
+  .confirmation-dialog__background {
+    background-color: rgba($color: $color-planning-pink, $alpha: 0.1);
+  }
+
+  .confirmation-dialog {
+    color: $color-white;
+    background-color: $color-dark-two;
+    border-color: $color-planning-pink;
+    box-shadow: $box-shadow--dark;
+  }
+
+  .confirmation-dialog__button {
+    border-color: $color-planning-pink;
+    &:hover {
+      box-shadow: 0 4px 8px rgba($color: $color-planning-pink, $alpha: 0.2);
+    }
+  }
+  .confirmation-dialog__button--accept {
+    background-color: $color-planning-pink;
+  }
+  .confirmation-dialog__button--decline {
+    color: $color-planning-pink;
+    background-color: rgba($color: $color-planning-pink, $alpha: 0.1);
+  }
+
+  .confirmation-dialog__close-button {
+    color: $color-planning-pink;
+    background-color: $color-dark-mode-note;
+    border-color: $color-planning-pink;
+    box-shadow: $box-shadow--dark;
+    &:hover {
+      color: $color-white;
+      background-color: $color-planning-pink;
+    }
+  }
+}

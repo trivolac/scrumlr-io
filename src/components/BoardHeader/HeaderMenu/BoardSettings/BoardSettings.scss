@@ -1,0 +1,97 @@
+@import "constants/style";
+
+$header-menu__item-height: 48px;
+$header-menu__item-border-width: 1px;
+$header-menu-border-bottom-color: #efefef;
+$header-menu-toggle-background-color: #c8c8c8;
+$header-menu-icon-width: 79px;
+$header-menu-icon-height: 24px;
+$header-menu-toggle-button-height: 12px;
+$header-menu-toggle-button-width: 12px;
+$header-menu-toggle-height: 3px;
+$header-menu-button-height: 24px;
+$header-menu-button-width: 24px;
+
+.board-settings {
+  position: relative;
+  height: 64px;
+  background-color: var(--accent-color);
+}
+
+.board-settings > form {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: $padding--default;
+  padding-right: $padding--default;
+}
+
+.board-settings__board-name {
+  height: $header-menu-button-height;
+  flex-grow: 1;
+  color: $color-white;
+  background-color: transparent;
+  font-size: $text-size--medium;
+  font-weight: bold;
+  letter-spacing: $letter-spacing--small;
+  line-height: $line-height--medium;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  border-top: none;
+  border-right: none;
+  border-bottom: $header-menu__item-border-width dashed $color-white;
+  border-left: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  outline: 0;
+  padding: 0;
+  transition: border-color 0.1s linear;
+  caret-color: $color-white;
+
+  &::placeholder {
+    color: $color-white;
+    opacity: 0.85;
+  }
+
+  &:disabled {
+    border-color: transparent;
+    opacity: 1;
+  }
+}
+
+.board-settings__edit-button {
+  margin-left: $margin--default;
+  height: $header-menu-button-height;
+  box-shadow: 0 0 0 0.1em $color-white;
+  border-color: transparent;
+  border-radius: 32px;
+  background-color: transparent;
+  color: $color-white;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.1s ease-in-out;
+
+  &:focus-visible {
+    background-color: $color-white;
+    color: var(--accent-color);
+  }
+
+  &:hover {
+    background-color: $color-white;
+    color: var(--accent-color);
+    transform: scale(1.06);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+}
+
+[theme="dark"] {
+  .header-menu {
+    box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.2);
+  }
+}

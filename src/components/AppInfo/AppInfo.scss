@@ -1,0 +1,38 @@
+@import "constants/style";
+
+.app-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: $text-size--medium;
+
+  text-decoration: none;
+  color: $color-dark-gray;
+
+  transition: all 0.08s ease-out;
+
+  &:hover {
+    color: $color-middle-gray;
+  }
+
+  &:focus-visible {
+    outline: none;
+    text-decoration: underline;
+  }
+}
+
+.app-info__icon {
+  width: 24px;
+  height: 24px;
+}
+
+[theme="dark"] {
+  .app-info {
+    color: $color-middle-gray;
+
+    &:focus-visible,
+    &:hover {
+      color: $color-white;
+    }
+  }
+}

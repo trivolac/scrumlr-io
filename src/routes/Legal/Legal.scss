@@ -1,0 +1,49 @@
+@import "constants/style";
+
+.legal {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: $padding--default;
+}
+
+.legal a {
+  color: $color-planning-pink;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.08s ease-out;
+  outline: none;
+
+  &:hover {
+    filter: $brighten--strongly;
+
+    > svg .scrumlr-logo__paths path:first-of-type {
+      transform: scale(1.08);
+    }
+  }
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+
+    > svg {
+      filter: $brighten--strongly;
+    }
+  }
+}
+
+.legal__text {
+  text-align: justify;
+}
+
+[theme="dark"] {
+  .legal {
+    color: $color-white;
+  }
+}
+
+@media #{$tablet} {
+  .legal {
+    padding: $padding--large;
+  }
+}

@@ -1,0 +1,20 @@
+@import "constants/style";
+
+.avatar {
+  height: 100%;
+  width: 100%;
+  overflow: visible;
+
+  #Avataaar {
+    transform: translateY(-20px);
+  }
+
+  #Avataaar #Avataaar {
+    transform: scale(0.85) translate(23px, 55px);
+  }
+}
+
+.avatar #Circle-Background,
+.avatar #Color\/Palette\/Blue-01 {
+  fill: var(--accent-color);
+}

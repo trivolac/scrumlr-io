@@ -1,0 +1,60 @@
+@import "constants/style";
+
+#portal {
+  position: fixed;
+  height: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: $backdrop-z-index;
+}
+
+.portal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  user-select: none; // fix a bug where opening portal via touch action leads to weird selection behaviour
+}
+
+.portal__frame {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  padding-top: $header__height;
+
+  // enable scroll of content
+  overflow: auto;
+
+  // horizontal centering of content
+  display: flex;
+  justify-content: center;
+}
+
+@media #{$tablet} {
+  .portal__frame {
+    padding: 128px 128px;
+  }
+}
+
+.portal__content {
+  height: fit-content;
+  width: fit-content;
+  ::selection {
+    background-color: rgba(var(--accent-color-rgb), 0.5);
+  }
+}
+
+.portal__frame--hiddenOverflow {
+  overflow: hidden;
+}
+
+.portal__frame--centered {
+  width: 100vw;
+  height: 100vh;
+}
+
+.portal__frame--disabledPadding {
+  padding: 0;
+}

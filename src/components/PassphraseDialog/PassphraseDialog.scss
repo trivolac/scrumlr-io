@@ -1,0 +1,32 @@
+@import "constants/style";
+
+.passphrase-dialog__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.passphrase-dialog {
+  width: 100%;
+  max-width: 420px;
+
+  padding: $padding--default;
+  color: $color-black;
+}
+
+.passphrase-dialog__form {
+  margin-top: 1.5em;
+}
+
+.passphrase-dialog__submit-button {
+  margin-top: 1em;
+}
+
+[theme="dark"] {
+  .passphrase-dialog {
+    color: $color-white;
+  }
+}

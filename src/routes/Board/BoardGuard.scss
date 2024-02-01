@@ -1,0 +1,33 @@
+@import "constants/style";
+
+.board-guard {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.board-guard__denied-link {
+  color: $color-planning-pink;
+  transition: all 0.08s ease-out;
+
+  &:hover {
+    filter: brightness(1.4);
+    transform: scale(1.02);
+  }
+}
+
+.board-guard__info {
+  font-size: $text-size--large;
+}
+
+[theme="dark"] {
+  .board-guard {
+    background-color: $color-dark-one;
+  }
+
+  .board-guard__info {
+    color: $color-white;
+  }
+}

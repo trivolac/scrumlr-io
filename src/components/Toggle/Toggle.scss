@@ -1,0 +1,57 @@
+@import "constants/style";
+
+.toggle {
+  position: relative;
+  width: 40px;
+  height: 24px;
+
+  &:hover::after {
+    filter: brightness(1.1);
+    transform: scale(1.1);
+  }
+}
+
+.toggle::before {
+  content: "";
+  position: absolute;
+  height: 8px;
+  width: 100%;
+  top: 8px;
+  left: 0;
+  background: $color-lighter-gray 0 0 no-repeat padding-box;
+  border-radius: 4px;
+}
+
+.toggle::after {
+  content: "";
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  border-radius: 100%;
+  transition: all 0.16s ease-out, transform 0.08s ease-out;
+  top: 0;
+
+  left: 0;
+  background-color: $color-middle-gray;
+}
+
+.toggle--active::after {
+  left: 16px;
+  background-color: var(--accent-color);
+  box-shadow: 0 4px 8px rgba(var(--accent-color-rgb), 0.24);
+}
+
+.toggle.toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+
+  &::after {
+    background-color: $color-middle-gray;
+    box-shadow: none;
+  }
+
+  &:hover::after {
+    filter: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render loading screen 1`] = `
+<div
+  class="loading-screen"
+>
+  <div
+    class="loading-indicator"
+  >
+    <div
+      class="bounce1"
+    />
+    <div
+      class="bounce2"
+    />
+    <div
+      class="bounce3"
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,15 @@
+@import "constants/style";
+
+.error-page {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+[theme="dark"] {
+  .error-page {
+    background-color: $color-dark-one;
+  }
+}

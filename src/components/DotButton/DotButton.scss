@@ -1,0 +1,18 @@
+@import "constants/style";
+
+.dot-button {
+  border-radius: 100%;
+  border: none;
+  padding: 0;
+  font-size: $text-size--medium;
+  line-height: 28px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+}
+.dot-button:disabled {
+  cursor: default;
+}
+.dot-button:not([disabled]):active {
+  transform: scale(0.9);
+}

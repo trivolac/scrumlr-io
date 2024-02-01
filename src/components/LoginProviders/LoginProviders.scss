@@ -1,0 +1,40 @@
+@import "src/constants/style";
+
+.login-providers {
+  display: flex;
+  gap: 8px;
+}
+
+.login-providers__icon {
+  color: $color-darkest-gray;
+}
+
+.login-providers__icon path {
+  fill: $color-darkest-gray;
+}
+
+.login-providers__button:first-child {
+  flex: 1 1 auto;
+}
+
+.login-providers__button:not(:first-child) {
+  min-width: auto;
+  background: $color-lighter-gray;
+}
+.login-providers__button:not(:first-child) > span {
+  display: none;
+}
+
+.login-providers__button:first-child .login-providers__icon {
+  color: $color-white;
+}
+
+.login-providers__button:first-child .login-providers__icon path {
+  fill: $color-white;
+}
+
+[theme="dark"] {
+  .login-providers__button:not(:first-child) {
+    background: $color-middle-gray;
+  }
+}

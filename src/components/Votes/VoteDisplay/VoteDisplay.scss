@@ -1,0 +1,225 @@
+@import "src/constants/style.scss";
+
+$vote-display-width: 114px;
+$vote-display__content-height: 38px;
+$vote-display__short-actions-height: 28px;
+
+$vote-display__progress-bar-color: #6096ff;
+$vote-display__progress-bar-color--depleted-light: #1bd47e;
+$vote-display__progress-bar-color--depleted-dark: #4ae89f;
+
+.vote-display {
+  height: 100%;
+  width: $vote-display-width;
+  color: $color-dark-mode-note;
+  background-color: $menu-icon-background-color--light;
+  border-radius: $rounded--full;
+  position: relative;
+  border: 2px solid $menu-icon-background-color--light;
+  box-shadow: $box-shadow--light;
+}
+[theme="dark"] .vote-display {
+  color: $color-white;
+  background-color: $menu-icon-background-color--dark;
+  border-color: $menu-icon-background-color--dark;
+}
+
+.vote-display > svg {
+  position: absolute;
+  height: 100%;
+  background-color: $color-dark-mode-note;
+  color: $color-white;
+  border-radius: 100%;
+}
+[theme="dark"] .vote-display > svg {
+  background-color: $color-white;
+  color: $color-dark-mode-note;
+}
+
+.vote-display > span {
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding-left: $vote-display__content-height;
+  line-height: $vote-display__content-height;
+  text-align: center;
+  font-weight: bold;
+}
+
+.vote-display__progress-bar {
+  position: absolute;
+  top: 0;
+  left: 19px;
+  height: $vote-display__content-height;
+  border-top-right-radius: $rounded--full;
+  border-bottom-right-radius: $rounded--full;
+  background-color: $vote-display__progress-bar-color;
+}
+
+.vote-display--votes-depleted {
+  animation: shake 1s;
+
+  .vote-display__progress-bar {
+    background-color: $vote-display__progress-bar-color--depleted-light;
+  }
+  [theme="dark"] .vote-display__progress-bar {
+    background-color: $vote-display__progress-bar-color--depleted-dark;
+  }
+}
+
+.vote-display__short-actions {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-radius: $rounded--full;
+  background-color: $menu-icon-background-color--light;
+  display: none;
+  justify-content: end;
+  align-items: center;
+  gap: $margin--small;
+  padding-right: 4px;
+}
+[theme="dark"] .vote-display__short-actions {
+  background-color: $menu-icon-background-color--dark;
+}
+
+.vote-display:hover > .vote-display__short-actions {
+  display: flex;
+}
+
+.short-actions__short-action {
+  position: relative;
+  height: $vote-display__short-actions-height;
+  width: $vote-display__short-actions-height;
+  border-radius: $rounded--full;
+}
+
+.short-action__button {
+  height: $vote-display__short-actions-height;
+  width: $vote-display__short-actions-height;
+  border-radius: $rounded--full;
+  background-color: $color-lighter-gray;
+  color: $color-dark-mode-note;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+[theme="dark"] .short-action__button {
+  background-color: $color-dark-one;
+  color: $color-white;
+}
+.short-action__button > svg {
+  position: absolute;
+  height: $icon--small;
+  width: $icon--small;
+}
+.short-action__button--ready > .short-action__cancel-icon,
+.short-action__button--unready > .short-action__cancel-icon {
+  visibility: hidden;
+}
+.short-action__button--ready:hover > .short-action__check-icon {
+  visibility: hidden;
+}
+.short-action__button--ready:hover > .short-action__cancel-icon {
+  visibility: visible;
+}
+.short-actions__button-wrapper > button > .short-actions-button__check-icon {
+  width: 100%;
+  height: 100%;
+}
+.short-action__button > .short-action__check-icon {
+  height: $vote-display__short-actions-height;
+  width: $vote-display__short-actions-height;
+}
+
+.short-action__button:hover {
+  background-color: $vote-display__progress-bar-color;
+  color: $color-white;
+}
+
+.short-action__tooltip {
+  max-width: max-content;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 150ms linear;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: $rounded--full;
+  padding: $padding--small $padding--default;
+  background-color: $tooltip-background-color--light;
+  color: $color-dark-mode-note;
+  font-size: $text--base;
+  font-weight: bold;
+  bottom: calc(100% + 6px);
+  box-shadow: $box-shadow--light;
+  // Increased the z-index to make sure the tooltip doesn't get overlapped by the absolute positioned icon
+  z-index: calc($infobar-z-index + 50);
+}
+@media (prefers-reduced-motion) {
+  .short-action__tooltip {
+    transition: none;
+  }
+}
+.short-actions__short-action:hover > .short-action__tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+[theme="dark"] .short-action__tooltip {
+  background-color: $tooltip-background-color--dark;
+  color: $color-white;
+}
+
+.short-action__tooltip::after {
+  content: "";
+  position: absolute;
+  border: 4px solid;
+  border-color: $tooltip-background-color--light transparent transparent transparent;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+}
+[theme="dark"] .short-action__tooltip::after {
+  border-color: $tooltip-background-color--dark transparent transparent transparent;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
